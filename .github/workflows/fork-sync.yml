@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # 手动触发，也可加 schedule 实现定时同步
   schedule: #定时每天0点、12点各触发一次
    # - cron: "30 1,4,7,10,13,16,19,22 * * *"  # 01:30/04:30/…/22:30 UTC
-  - cron: "0 0,12, * * *"    # 00:00/12:00 UTC
+  - cron: "0 0,12 * * *"    # 00:00/12:00 UTC
 
 env:
   RELEASE_LIMIT: 3 # release同步的数量 最新的几个
@@ -31,7 +31,7 @@ jobs:
         echo "GH_TOKEN=${{ secrets.PAT_TOKEN != '' && secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
     - name: checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
 
